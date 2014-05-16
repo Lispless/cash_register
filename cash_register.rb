@@ -2,19 +2,14 @@
 #120945,Light,2.50,5
 #679340,Medium,3.25,7.50
 #328745,Bold,4.75,9.75
-#name = gets.chomp
-# if phone_book.has_key?(name)
-#   puts "Cell: #{phone_book[name][:cell]}"
-#   puts "Work: #{phone_book[name][:work]}"
-# else
-#   puts "Name not found."
-#end
 require "csv"
 require "pry"
 
 amount = []
+quantity = []
 menu= {}
 id = 1
+transcript = {}
 
 def sum_array(i)
 	total = 0
@@ -34,12 +29,32 @@ CSV.foreach('products.csv', headers: true) do |row|
 	id += 1
 end
 
-puts menu
-puts "This is item #{menu[2][:id]}."
-puts "This is the item #{menu[3][:name]}."
-
 puts "Welcome to James' Coffee Emporium!"
 puts "##{menu[1][:id]}) Add item - #{menu[1][:retail_price]} - #{menu[1][:name]}"
 puts "##{menu[2][:id]}) Add item - #{menu[2][:retail_price]} - #{menu[2][:name]}"
 puts "##{menu[3][:id]}) Add item - #{menu[3][:retail_price]} - #{menu[3][:name]}"
 puts "#4) Complete sale"
+
+puts "Your selection:"
+option = gets.chomp.to_i
+while option != 4
+		if option > 4
+			puts "I'm sorry, I don't believe that is an option."
+		else
+			puts "Your selection:"
+			option = gets.chomp.to_i
+			puts "How many would you like?"
+			quantity_desired = gets.chomp
+			quantity << quantity_desired.to_i
+		end
+end
+#	puts quantity
+#	tendered = gets.chomp
+#	amount << tendered.to_f
+#	sum_array(amount)
+puts $foo
+
+
+
+
+
