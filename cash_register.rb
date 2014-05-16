@@ -2,8 +2,6 @@
 #120945,Light,2.50,5
 #679340,Medium,3.25,7.50
 #328745,Bold,4.75,9.75
-#puts sale_items['120945'] ----=>Light
-#puts sale_prices -------------=>{2.5=>5.0, 3.25=>7.5, 4.75=>9.75}
 #name = gets.chomp
 # if phone_book.has_key?(name)
 #   puts "Cell: #{phone_book[name][:cell]}"
@@ -30,12 +28,18 @@ end
 CSV.foreach('products.csv', headers: true) do |row|
 	sku = row["SKU"]
 	name = row["name"]
-	wholesale_price = row["wholesale_price"].to_f
-	retail_price = row["retail_price"].to_f
+	wholesale_price = row["wholesale_price"]
+	retail_price = row["retail_price"]
 	menu[id] = {id: id, sku: sku, name: name, wholesale_price: wholesale_price, retail_price: retail_price}
 	id += 1
 end
 
 puts menu
-puts 'This is item #menu[1].'
-puts 'This is the item'
+puts "This is item #{menu[2][:id]}."
+puts "This is the item #{menu[3][:name]}."
+
+puts "Welcome to James' Coffee Emporium!"
+puts "##{menu[1][:id]}) Add item - #{menu[1][:retail_price]} - #{menu[1][:name]}"
+puts "##{menu[2][:id]}) Add item - #{menu[2][:retail_price]} - #{menu[2][:name]}"
+puts "##{menu[3][:id]}) Add item - #{menu[3][:retail_price]} - #{menu[3][:name]}"
+puts "#4) Complete sale"
