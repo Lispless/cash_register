@@ -5,19 +5,16 @@
 require "csv"
 require "pry"
 
-amount = []
-quantity = []
 menu= {}
 id = 1
-transcript = {}
 
 def sum_array(i)
 	total = 0
-	i.each do |v|
-		total = total + v
+	i.each do |d|
+		total = total + d
 		$foo = total
 	end
-	puts "The total so far is $#{total}"
+	puts "Subtotal: $#{total}"
 end
 
 CSV.foreach('products.csv', headers: true) do |row|
@@ -30,29 +27,14 @@ CSV.foreach('products.csv', headers: true) do |row|
 end
 
 puts "Welcome to James' Coffee Emporium!"
-puts "##{menu[1][:id]}) Add item - #{menu[1][:retail_price]} - #{menu[1][:name]}"
-puts "##{menu[2][:id]}) Add item - #{menu[2][:retail_price]} - #{menu[2][:name]}"
-puts "##{menu[3][:id]}) Add item - #{menu[3][:retail_price]} - #{menu[3][:name]}"
-puts "#4) Complete sale"
+menu.each do |id, sub_hash|
+	puts "##{sub_hash[:id]}) Add item - #{sub_hash[:retail_price]} - #{sub_hash[:name]}"
+end
+puts "##{id}) Complete sale"
 
 puts "Your selection:"
-option = gets.chomp.to_i
-while option != 4
-		if option > 4
-			puts "I'm sorry, I don't believe that is an option."
-		else
-			puts "Your selection:"
-			option = gets.chomp.to_i
-			puts "How many would you like?"
-			quantity_desired = gets.chomp
-			quantity << quantity_desired.to_i
-		end
-end
-#	puts quantity
-#	tendered = gets.chomp
-#	amount << tendered.to_f
-#	sum_array(amount)
-puts $foo
+option = gets.chomp
+
 
 
 
